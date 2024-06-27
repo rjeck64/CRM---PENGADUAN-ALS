@@ -10,11 +10,11 @@ try {
     // Query untuk menggabungkan data dari kedua tabel
     $sql = "
     SELECT id_pengaduan, judul_laporan as judul, tanggal_kejadian AS informasi, 'pengaduan' AS sumber
-    FROM pengaduan
+    FROM pengaduan WHERE anonim_rahasia = 1
     UNION ALL
     SELECT id_saran, judul_saran as judul, tanggal_pengajuan AS informasi, 'saran' AS sumber
     FROM saran
-    WHERE anonim_rahasia = 0
+    WHERE anonim_rahasia = 1
     ";
 
     // Eksekusi query
