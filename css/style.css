@@ -1,0 +1,170 @@
+body .main{
+    margin-top: -200px;
+    background-image: url("../images/bg.png");
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    z-index: -99999;
+}
+nav{
+    display: flex;
+    width: 100%;
+    padding: 30px 0 30px 0;
+    align-items: center;
+    gap: 56px;
+    box-shadow: 0px 4px 9.6px 0px rgba(71, 71, 161, 0.23);
+}
+nav p{
+    color: #FFF;
+    font-family: Outfit;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    letter-spacing: -3.52px;
+}
+nav ul {
+    list-style-type: none; /* Menghilangkan bullet points */
+    padding: 0;
+    margin: 0 20px;
+    display: flex; /* Membuat item dalam satu baris */
+}
+nav li {
+    margin-right: 20px; /* Jarak antar item */
+    color: #FFF;
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.content{
+    margin-top: 70px;
+    text-align: center;
+}
+.content h1{
+    color: #FFF;
+    font-family: Outfit;
+    font-size: 37px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.content h2{
+    margin-top: 17px;
+    color: #FFF;
+    font-family: Outfit;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.content p{
+    margin-top: 35px;
+    color: #FFF;
+    font-family: Outfit;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.content button{
+    margin-top: 29px;
+}
+.form{
+    margin-top: 100px;
+    border-radius: 24px;
+    background: #FFF;
+    box-shadow: 0px 4px 75.1px -9px rgba(0, 0, 0, 0.25);
+}
+.form .card-body h4{
+    margin-bottom: 30px;
+    color: #4747A2;
+    font-family: Outfit;
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.form p{
+    margin-top: 30px;
+    color: #000;
+    font-family: Outfit;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* Sembunyikan radio button asli */
+.radio-toolbar input[type="radio"] {
+    display: none;
+  }
+  
+  /* Style dasar untuk label */
+  .radio-toolbar label {
+    display: inline-block;
+    padding: 10px 20px;
+    height: 120px;
+    width: 150px;
+    text-align: center;
+    padding-top: 120px;
+    font-family: sans-serif;
+    border: 2px solid transparent;
+    background-size: cover; /* Pastikan gambar menutupi seluruh area label */
+  }
+  
+  /* Tambahkan gambar untuk setiap emosi */
+  #label1 {
+    background-image: url('../images/Emoji1.png');
+    background-size: 88px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  #label2 {
+    background-image: url('../images/Emoji2.png');
+    background-size: 88px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  #label3 {
+    background-image: url('../images/Emoji3.png');
+    background-size: 88px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  #label4 {
+    background-image: url('../images/Emoji4.png');
+    background-size: 88px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  #label5 {
+    background-image: url('../images/Emoji5.png');
+    background-size: 88px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  /* Style untuk label saat radio button dipilih */
+.radio-toolbar input[type="radio"]:checked + #label1 {
+    background-image: url('../images/Emoji1-2.png');
+  }
+  .radio-toolbar input[type="radio"]:checked + #label2 {
+    background-image: url('../images/Emoji2-2.png');
+  }
+  .radio-toolbar input[type="radio"]:checked + #label3 {
+    background-image: url('../images/Emoji3-2.png');
+  }
+  .radio-toolbar input[type="radio"]:checked + #label4 {
+    background-image: url('../images/Emoji4-2.png');
+  }
+  .radio-toolbar input[type="radio"]:checked + #label5 {
+    background-image: url('../images/Emoji5-2.png');
+  }
+
+  
