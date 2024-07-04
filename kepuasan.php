@@ -78,22 +78,25 @@
     //     $stmt->close();
     // }
     // Proses ketika tombol submit ditekan
+    
 if (isset($_GET['submit'])) {
     // Memeriksa apakah semua data session p1 sampai p15 ada
+    $_SESSION['name'] = $_GET['p9'];
+    $_SESSION['umur'] = $_GET['p10'];
+    $_SESSION['jk'] = $_GET['p11'];
     $allSet = isset($_SESSION['name']);
-    for ($i = 1; $i <= 15; $i++) {
+    for ($i = 1; $i <= 11; $i++) {
         if (!isset($_SESSION["p$i"])) {
             $allSet = false;
             break;
         }
     }
-
     // Jika semua data ada, masukkan ke dalam database
     if ($allSet) {
         $name = $_SESSION['name'];
         $values = [];
-        for ($i = 1; $i <= 15; $i++) {
-            if ($i <= 12) {
+        for ($i = 1; $i <= 11; $i++) {
+            if ($i <= 8 ) {
                 // Konversi nilai p1 hingga p13 ke integer
                 $values[] = (int)$_SESSION["p$i"];
             } else {
@@ -102,10 +105,17 @@ if (isset($_GET['submit'])) {
         }
 
         // Menyiapkan dan menjalankan statement SQL
-        $stmt = $conn->prepare("INSERT INTO kepuasan (nama, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("siiiiiiiiiiiisss", $name, ...$values);
+        $stmt = $conn->prepare("INSERT INTO kuesioner (rasa_kopi, variasi_menu, keramahan_staf, kecepatan_layanan, harga, kenyamanan, kebersihan, kepuasan_keseluruhan, nama, usia, jenis_kelamin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("iiiiiiiisis", ...$values);
+
+        if ($stmt->execute() === TRUE) {
+            echo "";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
 
         $stmt->close();
+
     } else {
         echo "Session data is missing.";
     }
@@ -141,24 +151,25 @@ if (isset($_GET['submit'])) {
     </div>
         <div class="container-xl mb-5">
             <nav >
-                <p>ALS</p>
+                <p>KR</p>
                 <ul class="d-flex align-items-center">
-                    <li>TENTANG ALS</li>
-                    <li>LIHAT LAPORAN</li>
+                    
                 </ul>
             </nav>
             <div class="content">
-                <h1>Layanan Saran Penumpang ALS </h1>
-                <h2>Sampaikan laporan Anda langsung kepada pihak ALS</h2>
+                <h1>Kuesioner Kepuasan Pelanggan Toko Kopi Rasa</h1>
+                <h2>Sampaikan Kesan Anda</h2>
             </div>
             <div class="form col-12 stretch-card">
                 <div class="card p-5">
                   <div class="card-body">
-                    <h4 class="card-title">A. Layanan Keseluruhan</h4>
+                    <?php  if (!isset($_GET['p11']) && !isset($_GET['p8']) ) {; ?>
+                        <h4 class="card-title">Jawab Bagaimana Kesan anda bagaimana tentang :</h4>
+                    <?php } ?>
                     <form class="forms-sample radio-toolbar">
                         <?php  if ($no_params) {; ?>
                             <div class="mb-5">
-                                <p>1. Bagaimana Anda menilai kualitas keseluruhan layanan yang disediakan oleh ALS?</p>
+                                <p>1. Rasa Kopi?</p>
                                 <input type="radio" id="radio1" name="p1" value="1">
                                 <label id="label1" for="radio1">Sangat Buruk</label>
 
@@ -177,7 +188,7 @@ if (isset($_GET['submit'])) {
                         <?php } ?>
                         <?php  if (isset($_GET['p1'])) {; ?>
                             <div class="mb-5">
-                                <p>2. Seberapa puas Anda dengan kenyamanan dan kebersihan armada ALS?</p>
+                                <p>2. Variasi Menu?</p>
                                 <input type="radio" id="radio1" name="p2" value="1">
                                 <label id="label1" for="radio1">Sangat Buruk</label>
 
@@ -196,7 +207,7 @@ if (isset($_GET['submit'])) {
                         <?php } ?>
                         <?php  if (isset($_GET['p2'])) {; ?>
                             <div class="mb-5">
-                                <p>3. Bagaimana Anda menilai ketepatan waktu layanan ALS?</p>
+                                <p>3. Keramahan Staf?</p>
                                 <input type="radio" id="radio1" name="p3" value="1">
                                 <label id="label1" for="radio1">Sangat Buruk</label>
 
@@ -215,7 +226,7 @@ if (isset($_GET['submit'])) {
                         <?php } ?>
                         <?php  if (isset($_GET['p3'])) {; ?>
                             <div class="mb-5">
-                                <p>4. Seberapa mudah Anda menemukan cara untuk mengajukan pengaduan di ALS?</p>
+                                <p>4. Kecepatan Layanan?</p>
                                 <input type="radio" id="radio1" name="p4" value="1">
                                 <label id="label1" for="radio1">Sangat Buruk</label>
 
@@ -234,7 +245,7 @@ if (isset($_GET['submit'])) {
                         <?php } ?>
                         <?php  if (isset($_GET['p4'])) {; ?>
                             <div class="mb-5">
-                                <p>5. Bagaimana Anda menilai kecepatan respon ALS dalam menangani pengaduan Anda?</p>
+                                <p>5. Harga?</p>
                                 <input type="radio" id="radio1" name="p5" value="1">
                                 <label id="label1" for="radio1">Sangat Buruk</label>
 
@@ -253,7 +264,7 @@ if (isset($_GET['submit'])) {
                         <?php } ?>
                         <?php  if (isset($_GET['p5'])) {; ?>
                             <div class="mb-5">
-                                <p>6. Seberapa puas Anda dengan solusi yang diberikan oleh ALS atas pengaduan Anda?</p>
+                                <p>6. Kenyamanan?</p>
                                 <input type="radio" id="radio1" name="p6" value="1">
                                 <label id="label1" for="radio1">Sangat Buruk</label>
 
@@ -272,7 +283,7 @@ if (isset($_GET['submit'])) {
                         <?php } ?>
                         <?php  if (isset($_GET['p6'])) {; ?>
                             <div class="mb-5">
-                                <p>7. Seberapa jelas dan informatif informasi yang diberikan oleh ALS terkait layanan dan penanganan pengaduan?</p>
+                                <p>7. Kebersihan?</p>
                                 <input type="radio" id="radio1" name="p7" value="1">
                                 <label id="label1" for="radio1">Sangat Buruk</label>
 
@@ -291,7 +302,7 @@ if (isset($_GET['submit'])) {
                         <?php } ?>
                         <?php  if (isset($_GET['p7'])) {; ?>
                             <div class="mb-5">
-                                <p>8. Seberapa ramah dan profesional staf ALS dalam berinteraksi dengan Anda?</p>
+                                <p>8. Kepuasan Keseluruhan?</p>
                                 <input type="radio" id="radio1" name="p8" value="1">
                                 <label id="label1" for="radio1">Sangat Buruk</label>
 
@@ -310,116 +321,39 @@ if (isset($_GET['submit'])) {
                         <?php } ?>
                         <?php  if (isset($_GET['p8'])) {; ?>
                             <div class="mb-5">
-                                <p>9. Seberapa puas Anda dengan frekuensi dan relevansi komunikasi yang Anda terima dari ALS (misalnya, pemberitahuan perjalanan, promosi, dll.)?</p>
-                                <input type="radio" id="radio1" name="p9" value="1">
-                                <label id="label1" for="radio1">Sangat Buruk</label>
-
-                                <input type="radio" id="radio2" name="p9" value="2">
-                                <label id="label2" for="radio2">Buruk</label>
-
-                                <input type="radio" id="radio3" name="p9" value="3">
-                                <label id="label3" for="radio3">Cukup</label>
-
-                                <input type="radio" id="radio4" name="p9" value="4">
-                                <label id="label4" for="radio4">Baik</label>
-
-                                <input type="radio" id="radio5" name="p9" value="5">
-                                <label id="label5" for="radio5">Sangat Baik</label>
+                                <p>Masukan Nama Anda</p>
+                                <div class="form-group mt-4">
+                                    <input type="text" class="form-control form-control-lg" id="exampleFormControlTextarea1" name="p9" rows="5" placeholder="Isi Nama Anda *"></input>
+                                </div>
                             </div>
-                        <?php } ?>
-                        <?php  if (isset($_GET['p9'])) {; ?>
                             <div class="mb-5">
-                                <p>10. Bagaimana Anda menilai kemudahan dalam menggunakan sistem online ALS untuk pemesanan dan pengaduan?</p>
-                                <input type="radio" id="radio1" name="p10" value="1">
-                                <label id="label1" for="radio1">Sangat Buruk</label>
-
-                                <input type="radio" id="radio2" name="p10" value="2">
-                                <label id="label2" for="radio2">Buruk</label>
-
-                                <input type="radio" id="radio3" name="p10" value="3">
-                                <label id="label3" for="radio3">Cukup</label>
-
-                                <input type="radio" id="radio4" name="p10" value="4">
-                                <label id="label4" for="radio4">Baik</label>
-
-                                <input type="radio" id="radio5" name="p10" value="5">
-                                <label id="label5" for="radio5">Sangat Baik</label>
+                                <p>Berapa Umur Anda</p>
+                                <div class="form-group mt-4">
+                                    <input type="number" class="form-control form-control-lg" id="exampleFormControlTextarea1" name="p10" rows="5" placeholder="Isi Umur Anda *"></input>
+                                </div>
                             </div>
-                        <?php } ?>
-                        <?php  if (isset($_GET['p10'])) {; ?>
                             <div class="mb-5">
-                                <p>11. Seberapa puas Anda dengan personalisasi layanan yang diberikan oleh ALS berdasarkan preferensi Anda?</p>
-                                <input type="radio" id="radio1" name="p11" value="1">
-                                <label id="label1" for="radio1">Sangat Buruk</label>
-
-                                <input type="radio" id="radio2" name="p11" value="2">
-                                <label id="label2" for="radio2">Buruk</label>
-
-                                <input type="radio" id="radio3" name="p11" value="3">
-                                <label id="label3" for="radio3">Cukup</label>
-
-                                <input type="radio" id="radio4" name="p11" value="4">
-                                <label id="label4" for="radio4">Baik</label>
-
-                                <input type="radio" id="radio5" name="p11" value="5">
-                                <label id="label5" for="radio5">Sangat Baik</label>
+                                <p>Jenis Kelamin</p>
+                                <div class="form-group mt-4">
+                                    <select class="form-control form-control-lg" name="p11" id="">
+                                        <option value="Pria">Pria</option>
+                                        <option value="Wanita">Wanita</option>
+                                    </select>
+                                </div>
                             </div>
                         <?php } ?>
                         <?php  if (isset($_GET['p11'])) {; ?>
-                            <div class="mb-5">
-                                <p>12. Seberapa besar kemungkinan Anda merekomendasikan layanan ALS kepada teman atau keluarga?</p>
-                                <input type="radio" id="radio1" name="p12" value="1">
-                                <label id="label1" for="radio1">Sangat Buruk</label>
-
-                                <input type="radio" id="radio2" name="p12" value="2">
-                                <label id="label2" for="radio2">Buruk</label>
-
-                                <input type="radio" id="radio3" name="p12" value="3">
-                                <label id="label3" for="radio3">Cukup</label>
-
-                                <input type="radio" id="radio4" name="p12" value="4">
-                                <label id="label4" for="radio4">Baik</label>
-
-                                <input type="radio" id="radio5" name="p12" value="5">
-                                <label id="label5" for="radio5">Sangat Baik</label>
-                            </div>
-                        <?php } ?>
-                        <?php  if (isset($_GET['p12'])) {; ?>
-                            <div class="mb-5">
-                                <p>13. Apa satu hal yang paling Anda sukai dari layanan ALS?</p>
-                                <div class="form-group mt-4">
-                                    <textarea class="form-control form-control-lg" id="exampleFormControlTextarea1" name="p13" rows="5" placeholder="Isi Pendapat Anda *"></textarea>
-                                </div>
-                            </div>
-                        <?php } ?>
-                        <?php  if (isset($_GET['p13'])) {; ?>
-                            <div class="mb-5">
-                                <p>14. Apa satu hal yang paling ingin Anda lihat ditingkatkan dalam layanan ALS?</p>
-                                <div class="form-group mt-4">
-                                    <textarea class="form-control form-control-lg" id="exampleFormControlTextarea1" name="p14" rows="5" placeholder="Isi Pendapat Anda *"></textarea>
-                                </div>
-                            </div>
-                        <?php } ?>
-                        <?php  if (isset($_GET['p14'])) {; ?>
-                            <div class="mb-5">
-                                <p>15. Apakah Anda memiliki saran atau komentar tambahan mengenai layanan ALS?</p>
-                                <div class="form-group mt-4">
-                                    <textarea class="form-control form-control-lg" id="exampleFormControlTextarea1" name="p15" rows="5" placeholder="Isi Pendapat Anda *"></textarea>
-                                </div>
-                            </div>
-                        <?php } ?>
-                        <?php  if (isset($_GET['p15'])) {; ?>
                             <div class="mb-5 text-center">
                                 <h4 class="card-title">Terima Kasih atas waktunya.</h4>
-                                <a href="clear_session.php"><button class="btn btn-primary mr-2 mt-4">HOME</button></a>
+                                <a href="clear_session.php" class="btn btn-primary mr-2 mt-4">HOME</a>
                             </div>
                         <?php } ?>
                         
 
                         <div class="d-flex flex-row-reverse mt-5">   
-                        <?php  if (isset($_GET['p15'])) {; ?>
+                        <?php  if (isset($_GET['p11'])) {; ?>
                             
-                        <?php  }else if (isset($_GET['p14'])) {; ?>
+                        <?php  }else if (isset($_GET['p8'])) {; ?>
                             <button type="submit" name="submit" class="btn btn-primary mr-2">Kirim</button>
                         <?php }else{ ?>
                             <button type="submit" class="btn btn-primary mr-2">Selanjutnya</button>

@@ -167,21 +167,15 @@ if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'super admin') {
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.php?i=pengaduan">
-              <i class="icon-grid menu-icon"></i>
-              <span class="menu-title">Pengaduan</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.php?i=saran">
-              <i class="icon-grid menu-icon"></i>
-              <span class="menu-title">Saran</span>
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="index.php?i=kepuasan">
               <i class="icon-grid menu-icon"></i>
-              <span class="menu-title">Kepuasan</span>
+              <span class="menu-title">Data Kepuasan</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?i=hitung">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Data Perhitungan</span>
             </a>
           </li>
           <!-- <li class="nav-item">
@@ -203,23 +197,11 @@ if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'super admin') {
           $i = $_GET['i'] ?? null;
 
           switch ($i) {
-              case 'pengaduan':
-                  include 'pengaduan.php';
-                  break;
-              case 'pengaduan_detail':
-                include 'pengaduan_detail.php';
-                break;
-              case 'saran':
-                  include 'saran.php';
-                  break;
-              case 'saran_detail':
-                include 'saran_detail.php';
-                break;
               case 'kepuasan':
                   include 'kepuasan.php';
                   break;
-              case 'user':
-                include 'user.php';
+              case 'hitung':
+                include 'hitung.php';
                 break;
 
               case null:

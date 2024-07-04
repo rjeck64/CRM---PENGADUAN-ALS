@@ -1,6 +1,6 @@
 <?php
 // Query SQL untuk mengambil data dari tabel Kepuasan
-$sql = "SELECT id_kepuasan, nama, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, tanggal_submit FROM Kepuasan";
+$sql = "SELECT * FROM kuesioner";
 $result = $conn->query($sql);
 ?>
 
@@ -56,22 +56,16 @@ $result = $conn->query($sql);
                     <thead>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>P1</th>
-                        <th>P2</th>
-                        <th>P3</th>
-                        <th>P4</th>
-                        <th>P5</th>
-                        <th>P6</th>
-                        <th>P7</th>
-                        <th>P8</th>
-                        <th>P9</th>
-                        <th>P10</th>
-                        <th>P11</th>
-                        <th>P12</th>
-                        <th>P13</th>
-                        <th>P14</th>
-                        <th>P15</th>
-                        <th>Tanggal Submit</th>
+                        <th>Usia</th>
+                        <th>Jenis</th>
+                        <th>Rasa Kopi</th>
+                        <th>Variasi Menu</th>
+                        <th>Keramahan Staf</th>
+                        <th>Kecepatan Layanan</th>
+                        <th>Harga</th>
+                        <th>Kenyamanan</th>
+                        <th>Kebersihan</th>
+                        <th>Kepuasan Keseluruhan</th>
                         <th>Aksi</th>
                     </thead>
                     <tbody>
@@ -83,24 +77,18 @@ $result = $conn->query($sql);
                                     echo "<tr>";
                                     echo "<td>" . $no++ . "</td>";
                                     echo "<td>" . htmlspecialchars($row["nama"]) . "</td>";
-                                    echo "<td>" . convertRating($row["p1"]) . "</td>";
-                                    echo "<td>" . convertRating($row["p2"]) . "</td>";
-                                    echo "<td>" . convertRating($row["p3"]) . "</td>";
-                                    echo "<td>" . convertRating($row["p4"]) . "</td>";
-                                    echo "<td>" . convertRating($row["p5"]) . "</td>";
-                                    echo "<td>" . convertRating($row["p6"]) . "</td>";
-                                    echo "<td>" . convertRating($row["p7"]) . "</td>";
-                                    echo "<td>" . convertRating($row["p8"]) . "</td>";
-                                    echo "<td>" . convertRating($row["p9"]) . "</td>";
-                                    echo "<td>" . convertRating($row["p10"]) . "</td>";
-                                    echo "<td>" . convertRating($row["p11"]) . "</td>";
-                                    echo "<td>" . convertRating($row["p12"]) . "</td>";
-                                    echo "<td>" . htmlspecialchars($row["p13"]) . "</td>";
-                                    echo "<td>" . htmlspecialchars($row["p14"]) . "</td>";
-                                    echo "<td>" . htmlspecialchars($row["p15"]) . "</td>";
-                                    echo "<td>" . htmlspecialchars($row["tanggal_submit"]) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row["usia"]) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row["jenis_kelamin"]) . "</td>";
+                                    echo "<td>" . convertRating($row["rasa_kopi"]) . "</td>";
+                                    echo "<td>" . convertRating($row["variasi_menu"]) . "</td>";
+                                    echo "<td>" . convertRating($row["keramahan_staf"]) . "</td>";
+                                    echo "<td>" . convertRating($row["kecepatan_layanan"]) . "</td>";
+                                    echo "<td>" . convertRating($row["harga"]) . "</td>";
+                                    echo "<td>" . convertRating($row["kenyamanan"]) . "</td>";
+                                    echo "<td>" . convertRating($row["kebersihan"]) . "</td>";
+                                    echo "<td>" . convertRating($row["kepuasan_keseluruhan"]) . "</td>";
                                     echo '<td>
-                                            <a href="page/hapus/hapusKepuasan.php?id_kepuasan=' . $row["id_kepuasan"] . '"><button type="button" class="btn btn-danger btn-rounded btn-icon">
+                                            <a href="page/hapus/hapusKepuasan.php?id_kepuasan=' . $row["id"] . '"><button type="button" class="btn btn-danger btn-rounded btn-icon">
                                             <i class="ti-trash"></i>
                                         </button></a>
                                             </td>';

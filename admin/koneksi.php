@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "crm - als"; // Ganti dengan nama database Anda
+$dbname = "pkl"; // Ganti dengan nama database Anda
 
 // Membuat koneksi
 $conn = new mysqli($servername, $username, $password, $dbname);

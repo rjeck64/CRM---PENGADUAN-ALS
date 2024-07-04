@@ -27,19 +27,16 @@
     </div>
         <div class="container-xl">
             <nav >
-                <p>ALS</p>
+                <p>KR</p>
                 <ul class="d-flex align-items-center">
-                    <li><a href="https://tiketals.com/" class="text-light">TENTANG ALS</a></li>
-                    <li><a href="lihat_laporan.php" class="text-light">LIHAT LAPORAN</a></li>
+                    
                 </ul>
             </nav>
             <div class="content">
-                <h1>Layanan Pengaduan, Saran dan Kepuasan Penumpang ALS </h1>
-                <h2>Sampaikan laporan Anda langsung kepada pihak ALS</h2>
+                <h1>Kuesioner Kepuasan Pelanggan Toko Kopi Rasa</h1>
+                <h2>Sampaikan Kesan Anda</h2>
 
-                <p>Pilih menu dibawah ini</p>
-                <a href="pengaduan.php"><button type="button" class="btn btn-light">Pengaduan</button></a>
-                <a href="saran.php"><button type="button" class="btn btn-light">Saran</button></a>
+                <p>Klik tombol dibawah ini untuk mengisi kuesioner</p>
                 <a href="kepuasan.php"><button type="button" class="btn btn-light">Kepuasan</button> </a>  
                 
             </div>
